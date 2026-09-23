@@ -65,18 +65,6 @@ Every successful poll has its own snapshot ID, even when the source bytes repeat
 This preserves collection history; use the SHA-256 for downstream content deduplication.
 Re-running creates another snapshot: there is no exactly-once ingestion guarantee.
 
-## What comes next
-
-This is an ingestion starter, not the Silver transformation or Azure deployment.
-Next, extract static operator tables and turn realtime entities into typed Parquet
-observations, then join using feed/operator identity, trip, service date, and stop
-sequence. Keep GTFS service-day times beyond 24:00 and Australia/Sydney timezone
-rules in mind. Do not substitute collection date for a missing service date.
-
-Trip updates contain predictions and reported delays. They do **not** establish
-actual bus arrivals on their own. Preserve repeated predictions, cancellations,
-and skipped stops before defining a reliability metric. No arrival matching or
-on-time percentages are calculated here.
 
 ## Checks
 
